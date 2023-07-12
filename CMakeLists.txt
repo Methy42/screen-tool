@@ -4,6 +4,11 @@ project(screen-tool)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread")
 
+if (CMAKE_SYSTEM_NAME MATCHES "Darwin")
+    set(CMAKE_SOURCE_LANGUAGE OBJCXX)
+    set(CMAKE_OBJCXX_EXTENSIONS OFF)
+endif()
+
 include_directories(
     ${PROJECT_SOURCE_DIR}/include
     ${PROJECT_SOURCE_DIR}/resources
@@ -11,10 +16,9 @@ include_directories(
     $ENV{CMAKE_INCLUDE_PATH}
 )
 
-# 在 macOS 平台上查找 CoreFoundation.framework 库和 CoreGraphics.framework 库
-if (APPLE)
-    find_library(CoreFoundation_LIBRARY CoreFoundation)
-    find_library(CORE_GRAPHICS_FRAMEWORK CoreGraphics)
+# 在 macOS 平台上查找 UIKit 框架
+if (CMAKE_SYSTEM_NAME MATCHES "Darwin")
+    find_library(APPKIT_LIBRARY AppKit)
 endif()
 
 # 在 linux 平台上查找 X11 库
@@ -28,14 +32,18 @@ endif()
 set(SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 # 添加源文件路径
-file(GLOB_RECURSE SRC_FILES "${SRC_DIR}/*.cpp" "${SRC_DIR}/**/*.cpp")
+if (CMAKE_SYSTEM_NAME MATCHES "Darwin")
+    file(GLOB_RECURSE SRC_FILES "${SRC_DIR}/*.cpp" "${SRC_DIR}/**/*.cpp" "${SRC_DIR}/**/*.mm")
+else()
+    file(GLOB_RECURSE SRC_FILES "${SRC_DIR}/*.cpp" "${SRC_DIR}/**/*.cpp")
+endif()
 
 # 生成可执行文件
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 # 链接 CoreGraphics 框架
-if(CORE_GRAPHICS_FRAMEWORK)
-    target_link_libraries(${PROJECT_NAME} ${CORE_GRAPHICS_FRAMEWORK})
+if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
+    target_link_libraries(${PROJECT_NAME} ${APPKIT_LIBRARY})
 endif()
 
 # 链接到X11库

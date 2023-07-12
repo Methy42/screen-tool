@@ -7,6 +7,8 @@
 #include <X11/extensions/Xinerama.h>
 #include <iostream>
 
+#include "common/ScreenBounds.h"
+
 namespace screen_tool {
     namespace native {
         namespace screen_x11 {

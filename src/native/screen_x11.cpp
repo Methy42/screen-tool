@@ -1,5 +1,7 @@
 #include "native/scrren_x11.h"
 
+#ifdef __linux__
+
 namespace screen_tool {
     namespace native {
         namespace screen_x11 {
@@ -35,3 +37,5 @@ namespace screen_tool {
         }
     }
 }
+
+#endif

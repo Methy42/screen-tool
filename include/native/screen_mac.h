@@ -3,12 +3,18 @@
 
 #ifdef __APPLE__
 
-#include <CoreGraphics/CoreGraphics.h>
+#include <vector>
+#include <iostream>
+#include "common/ScreenExtends.h"
 
 namespace screen_tool {
     namespace native {
         namespace screen_mac {
             int print_screen_info();
+
+            std::vector<ScreenSimpleInfo> get_screen_list();
+
+            int get_primary_screen_bounds(ScreenBounds *screenBounds);
         }
     }
 }
