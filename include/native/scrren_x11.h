@@ -4,6 +4,7 @@
 #ifdef __linux__
 
 #include <X11/Xlib.h>
+#include <X11/extensions/Xinerama.h>
 #include <iostream>
 
 namespace screen_tool {

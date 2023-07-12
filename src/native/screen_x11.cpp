@@ -7,21 +7,27 @@ namespace screen_tool {
             {
                 Display* display = XOpenDisplay(NULL);
 
-                int screenCount = XScreenCount(display);
+                int eventBase, errorBase;
+                if (!XineramaQueryExtension(display, &eventBase, &errorBase))
+                {
+                    printf("Xinerama extension not available.\n");
+                    XCloseDisplay(display);
+                    return 1;
+                }
+
+                int screenCount;
+                XineramaScreenInfo* screenInfo = XineramaQueryScreens(display, &screenCount);
 
                 for (int i = 0; i < screenCount; ++i)
                 {
-                    Screen* screen = XScreenOfDisplay(display, i);
-                    int screenWidth = XWidthOfScreen(screen);
-                    int screenHeight = XHeightOfScreen(screen);
-                    int screenX = XDisplayWidth(display, i);
-                    int screenY = XDisplayHeight(display, i);
+                    XineramaScreenInfo info = screenInfo[i];
 
-                    printf("Screen %d:\n", i + 1);
-                    printf("  Origin: (%d, %d)\n", screenX, screenY);
-                    printf("  Size: %d x %d\n", screenWidth, screenHeight);
+                    printf("Scrren %d:\n", i + 1);
+                    printf("  Origin: (%d, %d)\n", info.x_org, info.y_org);
+                    printf("  Size: %d x %d\n", info.width, info.height);
                 }
 
+                XFree(screenInfo);
                 XCloseDisplay(display);
 
                 return 0;

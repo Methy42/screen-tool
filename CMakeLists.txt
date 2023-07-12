@@ -40,7 +40,7 @@ endif()
 
 # 链接到X11库
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
-    target_link_libraries(${PROJECT_NAME} X11 ${X11_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME} X11 ${X11_LIBRARIES} Xinerama)
 endif()
 
 
