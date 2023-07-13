@@ -4,15 +4,21 @@
 #ifdef __linux__
 
 #include <X11/Xlib.h>
-#include <X11/extensions/Xinerama.h>
+#include <X11/extensions/Xrandr.h>
 #include <iostream>
+#include <vector>
+#include <cstring>
 
-#include "common/ScreenBounds.h"
+#include "common/ScreenExtends.h"
 
 namespace screen_tool {
     namespace native {
-        namespace screen_x11 {
+        namespace screen {
             int print_screen_info();
+
+            std::vector<ScreenSimpleInfo> get_screen_list();
+
+            int get_primary_screen_bounds(ScreenBounds *screenBounds);
         }
     }
 }

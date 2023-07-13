@@ -23,7 +23,8 @@ endif()
 
 # 在 linux 平台上查找 X11 库
 if (CMAKE_SYSTEM_NAME MATCHES "Linux")
-    find_library(X11 REQUIRED)
+    find_library(X11_LIBRARIES X11)
+    find_library(XRANDR_LIBRARIES Xrandr)
     include_directories(/usr/include/X11)
     link_directories(/usr/lib/X11)
 endif()
@@ -48,7 +49,7 @@ endif()
 
 # 链接到X11库
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
-    target_link_libraries(${PROJECT_NAME} X11 ${X11_LIBRARIES} Xinerama)
+    target_link_libraries(${PROJECT_NAME} ${X11_LIBRARIES} ${XRANDR_LIBRARIES})
 endif()
 
 

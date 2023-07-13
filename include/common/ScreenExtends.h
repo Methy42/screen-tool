@@ -17,7 +17,7 @@ struct ScreenSimpleInfo
     uint32_t id;
     std::string name;
     bool is_primary;
-    ScreenBounds* bounds;
+    ScreenBounds bounds;
 };
 
 #endif /* COMMON_SCREEN_BOUNDS_H */

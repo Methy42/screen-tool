@@ -8,7 +8,7 @@ namespace screen_tool
 {
     namespace native
     {
-        namespace screen_mac
+        namespace screen
         {
             int print_screen_info()
             {
@@ -43,11 +43,11 @@ namespace screen_tool
                     screenSimpleInfo.name = [[screen localizedName] UTF8String];
                     screenSimpleInfo.id = [[screen deviceDescription][@"NSScreenNumber"] unsignedIntValue];
                     screenSimpleInfo.is_primary = [screen isEqualTo:[NSScreen mainScreen]];
-                    screenSimpleInfo.bounds = new ScreenBounds;
-                    screenSimpleInfo.bounds->x = frame.origin.x;
-                    screenSimpleInfo.bounds->y = frame.origin.y;
-                    screenSimpleInfo.bounds->width = frame.size.width;
-                    screenSimpleInfo.bounds->height = frame.size.height;
+                    screenSimpleInfo.bounds = ScreenBounds();
+                    screenSimpleInfo.bounds.x = frame.origin.x;
+                    screenSimpleInfo.bounds.y = frame.origin.y;
+                    screenSimpleInfo.bounds.width = frame.size.width;
+                    screenSimpleInfo.bounds.height = frame.size.height;
 
                     screenList.push_back(screenSimpleInfo);
                 }

@@ -9,7 +9,7 @@
 
 namespace screen_tool {
     namespace native {
-        namespace screen_mac {
+        namespace screen {
             int print_screen_info();
 
             std::vector<ScreenSimpleInfo> get_screen_list();
