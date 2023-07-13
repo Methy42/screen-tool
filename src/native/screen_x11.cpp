@@ -59,7 +59,7 @@ namespace screen_tool {
 
                     ScreenSimpleInfo screenSimpleInfo;
                     screenSimpleInfo.id = id;
-                    screenSimpleInfo.name = info[i].name;
+                    screenSimpleInfo.name = XGetAtomName(display, info[i].name);
                     screenSimpleInfo.is_primary = info[i].primary;
                     screenSimpleInfo.bounds = ScreenBounds();
                     screenSimpleInfo.bounds.x = info[i].x;
