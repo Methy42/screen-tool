@@ -40,7 +40,8 @@ else()
 endif()
 
 # 生成可执行文件
-add_executable(${PROJECT_NAME} ${SRC_FILES})
+add_library(${PROJECT_NAME} ${SRC_FILES})
+# add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 # 链接 CoreGraphics 框架
 if(CMAKE_SYSTEM_NAME MATCHES "Darwin")

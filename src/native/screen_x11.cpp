@@ -1,6 +1,6 @@
-#include "native/screen_x11.h"
-
 #ifdef __linux__
+
+#include "screen-tool/native/screen_x11.h"
 
 namespace screen_tool {
     namespace native {

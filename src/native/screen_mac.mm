@@ -1,8 +1,7 @@
-#include "native/screen_mac.h"
+#ifdef __APPLE__
+#include "screen-tool/native/screen_mac.h"
 
 #import <Cocoa/Cocoa.h>
-
-#ifdef __APPLE__
 
 namespace screen_tool
 {

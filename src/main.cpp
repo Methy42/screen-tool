@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "native/screen.h"
+#include "screen-tool/native/screen.h"
 
 int main() {
     screen_tool::native::screen::print_screen_info();
