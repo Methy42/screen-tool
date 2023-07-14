@@ -2,7 +2,7 @@
 #define NATIVE_SCREEN_H
 
 #ifdef __linux__
-    #include "screen-tool/native/scrren_x11.h"
+    #include "screen-tool/native/screen_x11.h"
 #endif
 
 #ifdef __APPLE__
