@@ -16,7 +16,7 @@ include_directories(
     $ENV{CMAKE_INCLUDE_PATH}
 )
 
-# 在 macOS 平台上查找 UIKit 框架
+# 在 macOS 平台上查找 AppKit 框架
 if (CMAKE_SYSTEM_NAME MATCHES "Darwin")
     find_library(APPKIT_LIBRARY AppKit)
 endif()
@@ -40,8 +40,8 @@ else()
 endif()
 
 # 生成可执行文件
-add_library(${PROJECT_NAME} ${SRC_FILES})
-# add_executable(${PROJECT_NAME} ${SRC_FILES})
+# add_library(${PROJECT_NAME} ${SRC_FILES})
+add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 # 链接 CoreGraphics 框架
 if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
